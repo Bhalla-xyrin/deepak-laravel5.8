@@ -3,13 +3,15 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
+
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Author extends Model
 {
     use Notifiable;
 
-    protected $guard = 'authors';
+    protected $guard = 'author';
 
     protected $fillable = [
         'name', 'email', 'password',
