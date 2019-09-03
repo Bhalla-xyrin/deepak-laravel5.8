@@ -94,7 +94,7 @@ class RegisterController extends Controller
     }
  
     //Auth registration
-    public function showAuthRegisterForm()
+    public function showAuthorRegisterForm()
     {
         return view('auth.register', ['url' => 'author']);
     }
