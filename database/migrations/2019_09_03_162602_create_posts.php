@@ -18,7 +18,10 @@ class CreatePosts extends Migration
             $table->integer('author_id')->unsigned();
             $table->foreign('author_id')->references('id')->on('authors');
             $table->string('title');
-            $table->string('post');
+            $table->string('description');
+            $table->string('filename')->nullable();
+            $table->string('mime')->nullable();
+            $table->string('original_filename')->nullable();
             $table->timestamps();
         });
     }
