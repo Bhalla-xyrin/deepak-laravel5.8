@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notifiable;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Author extends Model
+class Author extends Authenticatable
 {
     use Notifiable;
 
