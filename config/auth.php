@@ -52,9 +52,9 @@ return [
             'provider' => 'admins',
         ],
 
-        'authors' => [
+        'author' => [
             'driver' => 'session',
-            'provider' => 'writers',
+            'provider' => 'authors',
         ],
     ],
 
@@ -86,7 +86,7 @@ return [
             'model' => App\Admin::class,
         ],
         
-        'writers' => [
+        'authors' => [
             'driver' => 'eloquent',
             'model' => App\Author::class,
         ],
