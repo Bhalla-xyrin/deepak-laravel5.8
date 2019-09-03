@@ -63,19 +63,19 @@ class LoginController extends Controller
     }
     
     //Author login logic
-    public function showWriterLoginForm()
+    public function showAuthorLoginForm()
     {
         return view('auth.login', ['url' => 'author']);
     }
 
-    public function writerLogin(Request $request)
+    public function authorLogin(Request $request)
     {
         $this->validate($request, [
             'email'   => 'required|email',
             'password' => 'required|min:6'
         ]);
 
-        if (Auth::guard('writer')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
+        if (Auth::guard('author')->attempt(['email' => $request->email, 'password' => $request->password], $request->get('remember'))) {
 
             return redirect()->intended('/author');
         }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Admin;
-use App\Writer;
+use App\Author;
  
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
@@ -43,7 +43,7 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
         $this->middleware('guest:admin');
-        $this->middleware('guest:writer');
+        $this->middleware('guest:author');
     }
 
     /**
@@ -102,7 +102,7 @@ class RegisterController extends Controller
     protected function createAuthor(Request $request)
     {
         $this->validator($request->all())->validate();
-        $writer = Author::create([
+        $author = Author::create([
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
