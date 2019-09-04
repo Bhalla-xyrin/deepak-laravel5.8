@@ -20,4 +20,20 @@ class Author extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+    //Mutator
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
+
+    public static function store($request)
+    {
+        //save author
+        $record = new Author();
+        $record->fill($request->all());
+        $record->type = "Author";
+        $record->save();
+    }
 }

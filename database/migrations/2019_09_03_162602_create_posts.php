@@ -15,9 +15,10 @@ class CreatePosts extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('author_id')->unsigned();
-            $table->foreign('author_id')->references('id')->on('authors');
+            $table->integer('created_by')->unsigned();
+            $table->string('type');
             $table->string('title');
+            $table->string('category');
             $table->string('description');
             $table->string('filename')->nullable();
             $table->string('mime')->nullable();

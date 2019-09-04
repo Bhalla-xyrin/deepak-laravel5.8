@@ -64,21 +64,58 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+        <div class="flex-center full-height">
+            <div class="conatiner">
+            <div class="row">
+            <div class="col-md-4">
+                @if (Route::has('login'))
+                    <div class="top-right links">
+                        @auth
+                            <a href="{{ url('/home') }}">Home</a>
+                        @else
+                            <a href="{{ route('login') }}">Login</a>
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}">Register</a>
+                            @endif
+                        @endauth
+                    </div>
+                @endif
+            <div>
+            <div class="col-md-4">
+                @if (Route::has('login'))
+                    <div class="top-left links">
+                        @auth
+                            <a href="{{ url('/home') }}">Home</a>
+                        @else
+                            <a href="{{ route('admin') }}"> Login As Admin</a>
 
+                            @if (Route::has('register'))
+                                <a href="{{ route('register') }}">Register As Admin</a>
+                            @endif
+                        @endauth
+                    </div>
+                @endif
+            </div>
+            <div class="col-md-4">
+                @if (Route::has('login'))
+                    <div class="top-center links">
+                        @auth
+                            <a href="{{ url('/home') }}">Home</a>
+                        @else
+                            <a href="{{ route('login-author') }}"> Login As Author</a>
+
+                            @if (Route::has('register'))
+                                <a href="{{ route('register-author') }}">Register As Author</a>
+                            @endif
+                        @endauth
+                    </div>
+                @endif
+            </div>
+            </div>
+            </div>
+
+            
             <div class="content">
                 <div class="title m-b-md">
                     Laravel

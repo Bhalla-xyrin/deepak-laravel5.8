@@ -20,4 +20,19 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    //Mutator
+    public function setPasswordAttribute($value)
+    {
+        $this->attributes['password'] = bcrypt($value);
+    }
+
+    public static function store($request)
+    {
+        //save admin
+        $record = new Admin();
+        $record->fill($request->all());
+        $record->type = "Admin";
+        $record->save();
+    }
 }

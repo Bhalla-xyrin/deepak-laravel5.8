@@ -61,6 +61,26 @@ class RegisterController extends Controller
         ]);
     }
 
+    //Admin Validation
+    protected function adminValidator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:admins'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+    }
+
+    //Author validation
+    protected function authorValidator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:authors'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -84,12 +104,10 @@ class RegisterController extends Controller
 
     protected function createAdmin(Request $request)
     {
-        $this->validator($request->all())->validate();
-        $admin = Admin::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
+        $this->adminValidator($request->all())->validate();
+        
+        Admin::store($request);
+
         return redirect()->intended('login/admin');
     }
  
@@ -101,12 +119,10 @@ class RegisterController extends Controller
 
     protected function createAuthor(Request $request)
     {
-        $this->validator($request->all())->validate();
-        $author = Author::create([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'password' => Hash::make($request['password']),
-        ]);
+        $this->authorValidator($request->all())->validate();
+        
+        Author::store($request);
+
         return redirect()->intended('login/author');
     }
 }
