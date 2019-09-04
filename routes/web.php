@@ -42,7 +42,7 @@ Route::get('/categories-detail/{post}' , 'Post\PostController@categories');
 
 
 //Edit post
-Route::group('guard' => 'admin', 'author'], function () {
+Route::group(['guard' => 'admin', 'author'], function () {
     Route::put('/post/{task}', 'Post\PostController@update')->name('posts.update');
 });
 
