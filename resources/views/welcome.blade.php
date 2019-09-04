@@ -112,6 +112,18 @@
                     </div>
                 @endif
             </div>
+
+            <div class="col-md-4">
+                @if (Route::has('login'))
+                    <div class="top-center links">
+                        @auth
+                            <a href="{{ url('/home') }}">Home</a>
+                        @else
+                            <a href="{{ route('all-posts') }}"> Login As Guest</a>
+                        @endauth
+                    </div>
+                @endif
+            </div>
             </div>
             </div>
 

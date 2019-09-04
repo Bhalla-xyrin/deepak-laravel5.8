@@ -1,4 +1,3 @@
-// resources/views/admin.blade.php
 
 @extends('layouts.auth')
 

@@ -14,34 +14,40 @@
 Route::view('/', 'welcome');
 Auth::routes();
 
-Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm')->name('admin');
+//Author routes
 Route::get('/login/author', 'Auth\LoginController@showAuthorLoginForm')->name('login-author');
-Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm');
 Route::get('/register/author', 'Auth\RegisterController@showAuthorRegisterForm')->name('register-author');
-
-Route::post('/login/admin', 'Auth\LoginController@adminLogin');
 Route::post('/login/author', 'Auth\LoginController@authorLogin');
-Route::post('/register/admin', 'Auth\RegisterController@createAdmin')->name('register');
 Route::post('/register/author', 'Auth\RegisterController@createAuthor');
-
-Route::view('/home', 'home')->middleware('auth');
-Route::view('/admin', 'layouts.admin');
 Route::view('/author', 'layouts.author')->name('author');
 
-//Posts 
-Route::view('/all-posts' , 'posts.show-all');
+//Admin routes
+Route::get('/login/admin', 'Auth\LoginController@showAdminLoginForm')->name('admin');
+Route::get('/register/admin', 'Auth\RegisterController@showAdminRegisterForm');
+Route::post('/register/admin', 'Auth\RegisterController@createAdmin')->name('register');
+Route::post('/login/admin', 'Auth\LoginController@adminLogin');
+Route::view('/admin', 'layouts.admin');
 
-Route::view('/post' , 'posts.create');
-Route::post('/posts' , 'Post\PostController@store');
+//Posts 
+Route::view('/all-posts' , 'posts.show-all')->name('all-posts');
 Route::get('/post/{id}' , 'Post\PostController@show');
 
+//create new post
+Route::view('/post' , 'posts.create');
+Route::post('/posts' , 'Post\PostController@store');
 
-
+//Post categories
 Route::view('/categories-list', 'posts.categories');
-
 Route::get('/categories-detail/{post}' , 'Post\PostController@categories');
 
 
+//Edit post
+Route::group('guard' => 'admin', 'author'], function () {
+    Route::put('/post/{task}', 'Post\PostController@update')->name('posts.update');
+});
+
+Route::get('/posts/{post}/edit', 'Post\PostController@edit')->name('posts.edit');
 
 
-
+//default
+Route::view('/home', 'home')->middleware('auth');

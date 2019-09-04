@@ -14,12 +14,26 @@ class PostController extends Controller
     {
         $posts = Post::all();
 
-        return View::make('posts.ahow-all', compact('posts'));
+        return View::make('posts.show-all', compact('posts'));
     }
 
     public function show($id)
     {
-        return Post::findOrFail($id);
+        $post = Post::findOrFail($id);
+
+        return View::make('posts.show', compact('post'));
+    }
+
+    public function edit($post)
+    {
+        $task = Post::findOrFail($post);
+        
+        return view('posts.edit',compact('task', $task));
+    }
+
+    public function update(Request $request, Post $task)
+    {
+        $task->update($request->all());
     }
 
     public function store(Request $request)

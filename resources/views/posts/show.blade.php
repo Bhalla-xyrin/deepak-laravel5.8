@@ -6,7 +6,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-body">
-                    <h3 class="text-center text-success">ItSolutionStuff.com</h3>
+                    <h3 class="text-center text-success"></h3>
                     <br/>
                     <h2>{{ $post->title }}</h2>
                     <p>
@@ -16,7 +16,7 @@
                     <h4>Display Comments</h4>
                     <hr/>
                     <h4>Add comment</h4>
-                    <form method="post" action="{{ route('comments.store'   ) }}">
+                    <form method="post">
                         @csrf
                         <div class="form-group">
                             <textarea class="form-control" name="body"></textarea>

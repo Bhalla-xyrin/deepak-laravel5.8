@@ -5,6 +5,10 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Support\Facades\Auth;
 
+use App\Admin;
+use App\Author;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 class CheckUserType
 {
     /**
@@ -17,14 +21,16 @@ class CheckUserType
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if ($guard == "admin" && Auth::guard($guard)->check()) {
-            return redirect('/post');
-        }
+        $user_id = Auth::user()->id;
+        $par = $request->route()->parameters();
 
-        if ($guard == "author" && Auth::guard($guard)->check()) {
-            return redirect('/post');
-        }
+        $admin = Admin::whereEmail(Auth::user()->email)->first();
 
-        return $next($request);
+        if($user_id == $par->created_by || !is_null($admin)){
+            return $next($request);
+        }else{
+            throw new ModelNotFoundException('You have no rights to change this details');
+
+        }
     }
 }
