@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
         <button type="button" onclick="window.location='http://localhost:8000/categories-list'">Click here to see categories</button>
-
+        <button type="button" onclick="window.location='http://localhost:8000/post'">Click New Post</button>
             <h1> Posts</h1>
             <table class="table table-bordered">
                 <thead>

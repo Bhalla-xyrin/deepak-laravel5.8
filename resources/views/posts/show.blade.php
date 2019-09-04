@@ -9,9 +9,7 @@
                     <h3 class="text-center text-success"></h3>
                     <br/>
                     <h2>{{ $post->title }}</h2>
-                    <p>
-                        {{ $post->body }}
-                    </p>
+                    <p>{{ $post->body }}</p>
                     <hr/>
                     <h4>Display Comments</h4>
                     <hr/>
