@@ -29,7 +29,7 @@ Route::post('/login/admin', 'Auth\LoginController@adminLogin');
 Route::view('/admin', 'layouts.admin');
 
 //Posts 
-Route::view('/all-posts' , 'posts.show-all')->name('all-posts');
+Route::get('/all-posts' , 'Post\PostController@index')->name('all-posts');
 Route::get('/post/{id}' , 'Post\PostController@show');
 
 //create new post
@@ -47,6 +47,8 @@ Route::group(['guard' => 'admin', 'author'], function () {
 });
 
 Route::get('/posts/{post}/edit', 'Post\PostController@edit')->name('posts.edit');
+
+Route::any('/search', 'Post\PostController@search');
 
 
 //default

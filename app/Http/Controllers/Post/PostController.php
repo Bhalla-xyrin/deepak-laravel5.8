@@ -12,7 +12,7 @@ class PostController extends Controller
 {
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::paginate(3);
 
         return View::make('posts.show-all', compact('posts'));
     }
@@ -47,6 +47,16 @@ class PostController extends Controller
         $posts = Post::whereCategory($category)->get();
 
         return View::make('posts.categories-detail', compact('posts'));
+    }
+
+    //Search
+    public function search(Request $request)
+    {
+        $posts = Post::orWhere('id', 'like', $request->search)
+                    ->orWhere('title', 'like', $request->search)
+                    ->paginate(3);
+
+        return View::make('posts.show-all', compact('posts'));
     }
 }
 
