@@ -1,10 +1,25 @@
+
 @extends('layouts.auth')
+
+<?php
+
+$admin = \Auth::guard('admin')->user();
+
+if(is_null($admin)){
+    $admin = \Auth::guard('author')->user();
+}
+if(is_null($admin)){
+    $admin = \Auth::guard('web')->user();
+}
+?>
 @section('content')
  <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-12">
         <button type="button" onclick="window.location='http://localhost:8000/categories-list'">Click here to see categories</button>
-        <button type="button" onclick="window.location='http://localhost:8000/post'">Click New Post</button>
+        @if(!is_null($admin))
+        <button type="button" onclick="window.location='http://localhost:8000/post'">Create New Post</button>
+        @endif
         <form action="/search" method="POST" role="search">
     {{ csrf_field() }}
     <form action="/search" method="POST" role="search">
