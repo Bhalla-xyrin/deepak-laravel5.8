@@ -1,6 +1,6 @@
 @extends('layouts.auth')
 @php 
-    $posts = \App\Post::all();
+    $posts = \App\Post::paginate(3);
 @endphp
 @section('content')
  <div class="container">
@@ -28,6 +28,7 @@
                 </tbody>
    
             </table>
+            {{ $posts->links() }}
         </div>
     </div>
 </div>
