@@ -11,13 +11,15 @@
                 <thead>
                     <th width="80px">Id</th>
                     <th>Title</th>
+                    <th>Description</th>
                     <th width="150px">Category</th>
                 </thead>
                 <tbody>
                 @foreach($posts as $post)
                 <tr>
                     <td>{{ $post->id }}</td>
-                    <td>{{ $post->title }}</td>
+                    <td>{{ $post->title }}</td>  
+                    <td>{{ strip_tags($post->description) }}</td>
                     <td>{{ $post->category}}</td>
                 </tr>
                 @endforeach
