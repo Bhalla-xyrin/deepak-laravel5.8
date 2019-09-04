@@ -8,6 +8,7 @@
                 <thead>
                     <th width="80px">Id</th>
                     <th>Title</th>
+                    <th>Description</th>
                     <th width="150px">Action</th>
                 </thead>
                 <tbody>
@@ -15,8 +16,8 @@
                 <tr>
                     <td>{{ $post->id }}</td>
                     <td>{{ $post->title }}</td>
-                    <td>
-                    </td>
+                    <td>{{ strip_tags($post->description )}}</td>
+                    <td><button type="button" onclick="window.location='{{ url('/posts/'.$post->id. '/edit') }}'">Edit Post</button></td>
                 </tr>
                 @endforeach
                 </tbody>

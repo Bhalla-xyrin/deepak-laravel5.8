@@ -7,7 +7,7 @@
  
     {{ method_field('PUT') }}
     
-    <textarea name="description">{{ $task->description }}</textarea>
+    <textarea name="description">{{ strip_tags($task->description) }}</textarea>
  
     <BR>
     <input type="submit">
