@@ -8,9 +8,6 @@ $admin = \Auth::guard('admin')->user();
 if(is_null($admin)){
     $admin = \Auth::guard('author')->user();
 }
-if(is_null($admin)){
-    $admin = \Auth::guard('web')->user();
-}
 ?>
 @section('content')
  <div class="container">
